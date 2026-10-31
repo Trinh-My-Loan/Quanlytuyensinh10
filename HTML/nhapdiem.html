@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân hệ Nhập Điểm & Import Excel - Cán bộ Tuyển sinh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #f1f5f9; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* Top Header */
+        .top-navbar {
+            background: linear-gradient(135deg, #0b438c, #1e5bb8);
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; }
+        .user-badge { background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+
+        /* Main Layout 2 Cột: Trái (Import Excel), Phải (Nhập điểm thủ công) */
+        .main-layout {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .panel-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            height: fit-content;
+        }
+
+        .panel-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0b438c;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Vùng kéo thả file Excel (Upload Box) */
+        .upload-dropzone {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+        .upload-dropzone:hover {
+            border-color: #0b438c;
+            background: #eef2ff;
+        }
+        .upload-dropzone i {
+            font-size: 40px;
+            color: #0b438c;
+            margin-bottom: 12px;
+        }
+        .upload-dropzone p {
+            font-size: 13.5px;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+        .upload-dropzone span {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* Form Nhập điểm thủ công */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+        .form-control {
+            width: 100%;
+            height: 42px;
+            padding: 0 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 13.5px;
+            outline: none;
+            background: #f8fafc;
+        }
+        .form-control:focus {
+            background: white;
+            border-color: #0b438c;
+            box-shadow: 0 0 0 3px rgba(11, 67, 140, 0.1);
+        }
+
+        .scores-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .btn-action {
+            width: 100%;
+            height: 44px;
+            background: #0b438c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-action:hover {
+            background: #08336c;
+        }
+
+        .btn-excel {
+            background: #10b981;
+        }
+        .btn-excel:hover {
+            background: #059669;
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-navbar">
+        <div class="navbar-brand">
+            <i class="fa-solid fa-graduation-cap"></i> PHÂN HỆ CHẤM ĐIỂM & NHẬP ĐIỂM - CÁN BỘ TUYỂN SINH
+        </div>
+        <div class="user-badge">
+            <i class="fa-solid fa-user-tie"></i> Cán bộ: Trần Thị Cán Bộ
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        
+        <!-- Cột Trái: Nhập điểm bằng File Excel -->
+        <div class="panel-card">
+            <div class="panel-title">
+                <i class="fa-solid fa-file-excel" style="color: #10b981;"></i> Nhập Điểm Hàng Loạt Bằng File Excel
+            </div>
+            
+            <div class="upload-dropzone" onclick="document.getElementById('excelFile').click();">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p><strong>Kéo thả file Excel vào đây</strong> hoặc bấm để chọn file</p>
+                <span>Hỗ trợ định dạng .xlsx, .xls (Dung lượng tối đa 15MB)</span>
+                <input type="file" id="excelFile" style="display: none;" accept=".xlsx, .xls">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Chọn đợt thi / Kỳ thi áp dụng</label>
+                <select class="form-control">
+                    <option>Kỳ thi tuyển sinh lớp 10 THPT năm học 2026-2027</option>
+                    <option>Kỳ thi tuyển sinh hệ chuyên năm học 2026-2027</option>
+                </select>
+            </div>
+
+            <button class="btn-action btn-excel" onclick="alert('Đã tải lên và import thành công 1,250 bảng điểm từ file Excel!')">
+                <i class="fa-solid fa-file-import"></i> Tiến Hành Import Dữ Liệu Excel
+            </button>
+
+            <div class="note-text">
+                <i class="fa-solid fa-circle-info"></i> <strong>Lưu ý:</strong> Cấu trúc file Excel cần tuân thủ đúng các cột: <em>MaThiSinh, HoVaTen, DiemToan, DiemVan, DiemNgoaiNgu</em> để hệ thống tự động ánh xạ chính xác.
+            </div>
+        </div>
+
+        <!-- Cột Phải: Nhập điểm thủ công trực tiếp -->
+        <div class="panel-card">
+            <div class="panel-title">
+                <i class="fa-solid fa-pen-to-square" style="color: #0b438c;"></i> Nhập Điểm Thí Sinh Trực Tiếp
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Lưu điểm thành công cho thí sinh!');">
+                <div class="form-group">
+                    <label class="form-label">Mã số thí sinh / Số CCCD</label>
+                    <input type="text" class="form-control" placeholder="Nhập mã thí sinh (VD: 300001)..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Họ và tên thí sinh</label>
+                    <input type="text" class="form-control" placeholder="Họ tên tự động hiển thị hoặc nhập..." required>
+                </div>
+
+                <div class="scores-grid">
+                    <div class="form-group">
+                        <label class="form-label">Điểm Toán</label>
+                        <input type="number" step="0.25" min="0" max="10" class="form-control" placeholder="0.0" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Điểm Ngữ Văn</label>
+                        <input type="number" step="0.25" min="0" max="10" class="form-control" placeholder="0.0" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Điểm Ngoại Ngữ</label>
+                        <input type="number" step="0.25" min="0" max="10" class="form-control" placeholder="0.0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Ghi chú / Hội đồng chấm</label>
+                    <input type="text" class="form-control" placeholder="Nhập ghi chú nếu có (Phúc khảo, vắng...)...">
+                </div>
+
+                <button type="submit" class="btn-action">
+                    <i class="fa-solid fa-floppy-disk"></i> Lưu & Cập Nhật Điểm Xét Tuyển
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

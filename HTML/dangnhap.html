@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Hệ thống Tuyển sinh Lớp 10</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Đường dẫn CSS liên kết đúng cấu trúc thư mục -->
+    <link rel="stylesheet" href="../CSS/dangnhap.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Logo và Tiêu đề -->
+        <div class="login-header">
+            <div class="logo-circle">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2>Đăng Nhập Hệ Thống</h2>
+            <p>Cổng quản lý tuyển sinh lớp 10 THPT</p>
+        </div>
+
+        <!-- Form Đăng nhập -->
+        <form action="#" method="POST">
+            <!-- Tên đăng nhập / Số CCCD -->
+            <div class="form-group">
+                <label class="form-label" for="username">Tên đăng nhập / Số CCCD</label>
+                <div class="input-wrap">
+                    <i class="fa-regular fa-user input-icon"></i>
+                    <input type="text" id="username" class="form-control" placeholder="Nhập tên đăng nhập của bạn" required>
+                </div>
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+                <label class="form-label" for="password">Mật khẩu</label>
+                <div class="input-wrap">
+                    <i class="fa-regular fa-lock input-icon"></i>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                        <i class="fa-regular fa-eye" id="eye-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tùy chọn nhớ tài khoản & quên mật khẩu -->
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox"> Ghi nhớ đăng nhập
+                </label>
+                <a href="#" class="forgot-pass">Quên mật khẩu?</a>
+            </div>
+
+            <!-- Nút bấm đăng nhập -->
+            <button type="submit" class="btn-login">Đăng Nhập</button>
+        </form>
+
+        <!-- Quay về trang chủ -->
+        <div class="back-home">
+            <a href="trangchu.html"><i class="fa-solid fa-arrow-left"></i> Quay lại trang chủ tuyển sinh</a>
+        </div>
+    </div>
+
+    <script>
+        // Tính năng ẩn/hiện mật khẩu
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.className = 'fa-regular fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.className = 'fa-regular fa-eye';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ Cán bộ tuyển sinh - Hệ thống Tuyển sinh Lớp 10</title>
+    <!-- Font Awesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 1. Sidebar Menu Bên Trái (Tone Xanh Dương Sáng) */
+        sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .sidebar-brand .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #0b438c, #1e5bb8);
+            color: #ffffff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(11, 67, 140, 0.2);
+        }
+
+        .sidebar-brand h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0b438c;
+            line-height: 1.3;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: #eef2ff;
+            color: #0b438c;
+        }
+
+        .sidebar-menu a i {
+            font-size: 16px;
+            width: 20px;
+            color: #0b438c;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+
+        /* 2. Main Content Bên Phải */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Top */
+        header {
+            background: #ffffff;
+            padding: 18px 30px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .header-title h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0b438c;
+        }
+
+        .header-title p {
+            font-size: 12.5px;
+            color: #64748b;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #0b438c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(11, 67, 140, 0.2);
+        }
+
+        .user-info h4 {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+
+        .user-info p {
+            font-size: 11.5px;
+            color: #64748b;
+        }
+
+        /* Dashboard Body */
+        .dashboard-body {
+            padding: 30px;
+        }
+
+        /* Thẻ Thống Kê Tổng Quan (4 Cột) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #eef2ff;
+            color: #0b438c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .stat-info span {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-info h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-top: 4px;
+        }
+
+        /* Grid Chức Năng Nhanh (Theo Use Case của Cán bộ) */
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0b438c;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .module-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            border-color: #0b438c;
+            box-shadow: 0 10px 30px rgba(11, 67, 140, 0.1);
+        }
+
+        .module-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .module-icon {
+            width: 48px;
+            height: 48px;
+            background: #eef2ff;
+            color: #0b438c;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .module-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .module-card p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .module-link {
+            margin-top: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0b438c;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Responsive Mobile */
+        @media(max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .modules-grid { grid-template-columns: 1fr; }
+            sidebar { width: 80px; }
+            .sidebar-brand h3, .sidebar-menu span, .sidebar-footer span { display: none; }
+            .main-content { margin-left: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Sidebar Menu -->
+    <sidebar>
+        <div class="sidebar-brand">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>Cán Bộ Tuyển Sinh</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fa-solid fa-house"></i> <span>Trang chủ</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-calendar-days"></i> <span>Quản lý Kỳ thi & Đợt</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-school"></i> <span>Danh sách Trường</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-users-rectangle"></i> <span>Hồ sơ Thí sinh</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-bullseye"></i> <span>Giao Chỉ tiêu</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Xét tuyển</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-user-gear"></i> <span>Hội đồng & Phân công</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-map-location-dot"></i> <span>Địa điểm & Phòng thi</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-bullhorn"></i> <span>Công bố Kết quả</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="dangnhap.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span></a>
+        </div>
+    </sidebar>
+
+    <!-- 2. Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div class="header-title">
+                <h2>Cổng Quản Trị Tuyển Sinh Lớp 10</h2>
+                <p>Năm học 2026-2027 · Sở Giáo dục và Đào tạo TP.HCM</p>
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar">CB</div>
+                <div class="user-info">
+                    <h4>Trần Thị Cán Bộ</h4>
+                    <p>Cán bộ tuyển sinh</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <div class="dashboard-body">
+            <!-- Thống kê tổng quan -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <div class="stat-info">
+                        <span>Hồ sơ tiếp nhận</span>
+                        <h3>85,420</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-school-flag"></i></div>
+                    <div class="stat-info">
+                        <span>Tổng chỉ tiêu công lập</span>
+                        <h3>70,000</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <div class="stat-info">
+                        <span>Trường THPT / THCS</span>
+                        <h3>119 cơ sở</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="stat-info">
+                        <span>Trạng thái đợt thi</span>
+                        <h3 style="color: #16794d; font-size: 18px; margin-top: 4px;">Đang nhận hồ sơ</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Các phân hệ chức năng chính bám sát Use Case -->
+            <h3 class="section-title"><i class="fa-solid fa-cubes"></i> Các phân hệ nghiệp vụ quản lý tuyển sinh</h3>
+            
+            <div class="modules-grid">
+                <!-- Chức năng 1 -->
+                <a href="#" class="module-card">
+                    <div>
+                        <div class="module-card-top">
+                            <div class="module-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+                            <span style="font-size: 12px; font-weight: 700; color: #16794d; background: #e6f6ee; padding: 4px 10px; border-radius: 20px;">Hoạt động</span>
+                        </div>
+                        <h4>Quản lý Kỳ thi & Đợt</h4>
+                        <p>Tạo đợt tuyển sinh mới, gia hạn thời gian tuyển sinh và cấu hình lịch trình kỳ thi.</p>
+                    </div>
+                    <div class="module-link">Truy cập phân hệ <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <!-- Chức năng 2 -->
+                <a href="#" class="module-card">
+                    <div>
+                        <div class="module-card-top">
+                            <div class="module-icon"><i class="fa-solid fa-users-gear"></i></div>
+                        </div>
+                        <h4>Quản lý Hồ sơ Thí sinh</h4>
+                        <p>Kiểm tra, cập nhật trạng thái, duyệt hồ sơ, sửa đổi thông tin thí sinh đăng ký dự thi.</p>
+                    </div>
+                    <div class="module-link">Truy cập phân hệ <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <!-- Chức năng 3 -->
+                <a href="#" class="module-card">
+                    <div>
+                        <div class="module-card-top">
+                            <div class="module-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        </div>
+                        <h4>Giao Chỉ Tiêu & Xét Tuyển</h4>
+                        <p>Giao chỉ tiêu tuyển sinh cho các trường THPT và thực thi thuật toán xét tuyển NV1 -> NV3.</p>
+                    </div>
+                    <div class="module-link">Truy cập phân hệ <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <!-- Chức năng 4 -->
+                <a href="#" class="module-card">
+                    <div>
+                        <div class="module-card-top">
+                            <div class="module-icon"><i class="fa-solid fa-id-badge"></i></div>
+                        </div>
+                        <h4>Hội đồng & Phân công</h4>
+                        <p>Quản lý hội đồng tuyển sinh, phân công hội đồng chấm thi và phân công chấm thi cụ thể.</p>
+                    </div>
+                    <div class="module-link">Truy cập phân hệ <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <!-- Chức năng 5 -->
+                <a href="#" class="module-card">
+                    <div>
+                        <div class="module-card-top">
+                            <div class="module-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+                        </div>
+                        <h4>Địa Điểm & Phòng Thi</h4>
+                        <p>Quản lý hệ thống địa điểm thi, phân chia phòng thi và sắp xếp danh sách thí sinh dự thi.</p>
+                    </div>
+                    <div class="module-link">Truy cập phân hệ <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <!-- Chức năng 6 -->
+                <a href="#" class="module-card">
+                    <div>
+                        <div class="module-card-top">
+                            <div class="module-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                            <span style="font-size: 12px; font-weight: 700; color: #b45309; background: #fef3c7; padding: 4px 10px; border-radius: 20px;">Sắp diễn ra</span>
+                        </div>
+                        <h4>Công Bố Kết Quả Tuyển Sinh</h4>
+                        <p>Kiểm tra điểm chuẩn, phê duyệt kết quả xét tuyển toàn đợt và công bố danh sách trúng tuyển.</p>
+                    </div>
+                    <div class="module-link">Truy cập phân hệ <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
