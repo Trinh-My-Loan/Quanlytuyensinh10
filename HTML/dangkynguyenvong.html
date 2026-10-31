@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký nguyện vọng - Tuyển sinh lớp 10</title>
+    <link rel="stylesheet" href="../CSS/dangkynguyenvong.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div>
+                    <h2>HỆ THỐNG TUYỂN SINH LỚP 10</h2>
+                    <p>SỞ GIÁO DỤC VÀ ĐÀO TẠO TP. HỒ CHÍ MINH</p>
+                </div>
+            </div>
+            <div class="student">
+                <i class="fa-regular fa-user"></i>
+                <span>Nguyễn Văn A</span>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="trangchu.html"><i class="fa-solid fa-house"></i> Trang chủ</a>
+            <a href="#"><i class="fa-regular fa-file-lines"></i> Văn bản - Thông báo</a>
+            <a href="#"><i class="fa-solid fa-school"></i> Thông tin trường THPT</a>
+            <a href="#"><i class="fa-solid fa-map-location-dot"></i> Bản đồ tuyển sinh</a>
+            <a class="active" href="dangkynguyenvong.html"><i class="fa-solid fa-list-check"></i> Đăng ký nguyện vọng</a>
+            <a href="#"><i class="fa-regular fa-circle-question"></i> Liên hệ</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="breadcrumb">Trang chủ <span>›</span> Đăng ký nguyện vọng</div>
+
+        <section class="page-heading">
+            <div>
+                <h1>Đăng ký nguyện vọng</h1>
+                <p>Chọn trường THPT và sắp xếp theo thứ tự ưu tiên.</p>
+            </div>
+            <div class="time-note">
+                <i class="fa-regular fa-calendar"></i>
+                Thời gian đăng ký: 11/08/2026 - 16/08/2026
+            </div>
+        </section>
+
+        <section class="steps">
+            <div class="step done">
+                <span class="step-number"><i class="fa-solid fa-check"></i></span>
+                <div><b>Bước 1: Xác nhận thông tin</b><small>Thông tin thí sinh đã được xác nhận</small></div>
+            </div>
+            <div class="step current">
+                <span class="step-number">2</span>
+                <div><b>Bước 2: Đăng ký nguyện vọng</b><small>Chọn trường và sắp xếp thứ tự ưu tiên</small></div>
+            </div>
+        </section>
+
+        <section class="info-card">
+            <div class="section-title">
+                <div>
+                    <h2><i class="fa-regular fa-id-card"></i> Thông tin thí sinh</h2>
+                    <p>Rà soát thông tin trước khi đăng ký nguyện vọng</p>
+                </div>
+                <span class="valid"><i class="fa-solid fa-circle-check"></i> Đã xác nhận hợp lệ</span>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item"><label>Họ và tên</label><strong>Nguyễn Văn A</strong></div>
+                <div class="info-item"><label>Lớp</label><strong>9A1</strong></div>
+                <div class="info-item"><label>Ngày tháng năm sinh</label><strong>01/01/2011</strong></div>
+                <div class="info-item"><label>Số định danh cá nhân</label><strong>079xxxxxxxxx</strong></div>
+                <div class="info-item"><label>Mã học sinh Bộ GD&ĐT</label><strong>HS000123</strong></div>
+                <div class="info-item"><label>Mã trường THCS (Bộ)</label><strong>THCS001</strong></div>
+                <div class="info-item"><label>Tên trường THCS (Bộ)</label><strong>THCS Nguyễn Du</strong></div>
+                <div class="info-item"><label>Phường / Xã</label><strong>Phường Bến Nghé</strong></div>
+            </div>
+
+            <div class="sub-title">Thông tin liên hệ</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="phone">SĐT liên hệ 1 <em>*</em></label>
+                    <input id="phone" type="tel" placeholder="Nhập số điện thoại">
+                </div>
+                <div class="form-group">
+                    <label for="phone2">SĐT liên hệ 2</label>
+                    <input id="phone2" type="tel" placeholder="Không bắt buộc">
+                </div>
+                <div class="form-group">
+                    <label for="phone3">SĐT liên hệ 3</label>
+                    <input id="phone3" type="tel" placeholder="Không bắt buộc">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email <em>*</em></label>
+                    <input id="email" type="email" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="city">Tỉnh / Thành <em>*</em></label>
+                    <input id="city" type="text" value="Thành phố Hồ Chí Minh">
+                </div>
+                <div class="form-group">
+                    <label for="ward">Phường / Xã <em>*</em></label>
+                    <input id="ward" type="text" placeholder="Nhập phường / xã">
+                </div>
+                <div class="form-group full">
+                    <label for="address">Số nhà, đường</label>
+                    <input id="address" type="text" placeholder="Nhập địa chỉ hiện tại">
+                </div>
+            </div>
+            <p class="notice"><i class="fa-solid fa-circle-info"></i> Nếu cần điều chỉnh thông tin học sinh hoặc nơi ở hiện tại, phụ huynh vui lòng liên hệ giáo viên chủ nhiệm để được hỗ trợ.</p>
+        </section>
+
+        <section class="register-layout">
+            <div class="school-card">
+                <div class="section-title">
+                    <div>
+                        <h2><i class="fa-solid fa-school"></i> Danh sách các trường THPT</h2>
+                        <p>Chọn trường muốn đăng ký vào danh sách nguyện vọng</p>
+                    </div>
+                    <span class="limit">Tối đa 3 nguyện vọng</span>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="searchSchool" type="text" placeholder="Tìm kiếm tên trường THPT...">
+                </div>
+
+                <div class="school-list" id="schoolList">
+                    <div class="school-row" data-name="THPT Nguyễn Thị Minh Khai">
+                        <div class="school-logo"><i class="fa-solid fa-school"></i></div>
+                        <div class="school-info"><b>THPT Nguyễn Thị Minh Khai</b><small>Phường Võ Thị Sáu</small></div>
+                        <button class="choose-btn" onclick="chonTruong('THPT Nguyễn Thị Minh Khai')">Chọn <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="school-row" data-name="THPT Bùi Thị Xuân">
+                        <div class="school-logo"><i class="fa-solid fa-school"></i></div>
+                        <div class="school-info"><b>THPT Bùi Thị Xuân</b><small>Phường Bến Thành</small></div>
+                        <button class="choose-btn" onclick="chonTruong('THPT Bùi Thị Xuân')">Chọn <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="school-row" data-name="THPT Marie Curie">
+                        <div class="school-logo"><i class="fa-solid fa-school"></i></div>
+                        <div class="school-info"><b>THPT Marie Curie</b><small>Phường Xuân Hòa</small></div>
+                        <button class="choose-btn" onclick="chonTruong('THPT Marie Curie')">Chọn <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="school-row" data-name="THPT Lê Quý Đôn">
+                        <div class="school-logo"><i class="fa-solid fa-school"></i></div>
+                        <div class="school-info"><b>THPT Lê Quý Đôn</b><small>Phường Xuân Hòa</small></div>
+                        <button class="choose-btn" onclick="chonTruong('THPT Lê Quý Đôn')">Chọn <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="selected-card">
+                <div class="section-title">
+                    <div>
+                        <h2><i class="fa-solid fa-list-ol"></i> Danh sách nguyện vọng đã chọn</h2>
+                        <p>Sắp xếp theo thứ tự ưu tiên của bạn</p>
+                    </div>
+                </div>
+                <div id="selectedList" class="selected-list">
+                    <div class="empty-state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        <b>Chưa có nguyện vọng</b>
+                        <span>Vui lòng chọn trường ở danh sách bên trái.</span>
+                    </div>
+                </div>
+                <div class="selected-footer">
+                    <span id="countText">Đã chọn 0/3 nguyện vọng</span>
+                    <div class="action-buttons">
+                        <button class="btn btn-light" onclick="thoatTrang()">Thoát</button>
+                        <button class="btn btn-primary" onclick="luuNguyenVong()"><i class="fa-regular fa-floppy-disk"></i> Lưu nguyện vọng</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="message" class="message"></div>
+        <footer>© 2026 Hệ thống tuyển sinh lớp 10 - Sở Giáo dục và Đào tạo</footer>
+    </main>
+
+    <script>
+        // Danh sách nguyện vọng đang chọn trên màn hình
+        let nguyenVong = [];
+
+        function chonTruong(tenTruong) {
+            if (nguyenVong.includes(tenTruong)) {
+                hienThongBao("Trường này đã có trong danh sách nguyện vọng.", "error");
+                return;
+            }
+            if (nguyenVong.length >= 3) {
+                hienThongBao("Bạn chỉ được đăng ký tối đa 3 nguyện vọng.", "error");
+                return;
+            }
+            nguyenVong.push(tenTruong);
+            hienThiNguyenVong();
+        }
+
+        function xoaTruong(index) {
+            nguyenVong.splice(index, 1);
+            hienThiNguyenVong();
+        }
+
+        function doiThuTu(index, huong) {
+            const viTriMoi = index + huong;
+            if (viTriMoi < 0 || viTriMoi >= nguyenVong.length) return;
+            [nguyenVong[index], nguyenVong[viTriMoi]] =
+                [nguyenVong[viTriMoi], nguyenVong[index]];
+            hienThiNguyenVong();
+        }
+
+        function hienThiNguyenVong() {
+            const danhSach = document.getElementById("selectedList");
+            document.getElementById("countText").innerText =
+                "Đã chọn " + nguyenVong.length + "/3 nguyện vọng";
+
+            if (nguyenVong.length === 0) {
+                danhSach.innerHTML = `<div class="empty-state">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <b>Chưa có nguyện vọng</b>
+                    <span>Vui lòng chọn trường ở danh sách bên trái.</span>
+                </div>`;
+                return;
+            }
+
+            danhSach.innerHTML = "";
+            nguyenVong.forEach((ten, index) => {
+                danhSach.innerHTML += `
+                    <div class="selected-item">
+                        <div class="priority">${index + 1}</div>
+                        <div class="selected-name">
+                            <b>${ten}</b>
+                            <small>Nguyện vọng ${index + 1}</small>
+                        </div>
+                        <div class="item-actions">
+                            <button title="Lên" onclick="doiThuTu(${index}, -1)" ${index === 0 ? "disabled" : ""}><i class="fa-solid fa-arrow-up"></i></button>
+                            <button title="Xuống" onclick="doiThuTu(${index}, 1)" ${index === nguyenVong.length - 1 ? "disabled" : ""}><i class="fa-solid fa-arrow-down"></i></button>
+                            <button class="delete-btn" title="Xóa" onclick="xoaTruong(${index})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function luuNguyenVong() {
+            const phone = document.getElementById("phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            if (!phone || !email) {
+                hienThongBao("Vui lòng nhập SĐT liên hệ 1 và Email.", "error");
+                return;
+            }
+            if (nguyenVong.length === 0) {
+                hienThongBao("Bạn chưa chọn nguyện vọng nào.", "error");
+                return;
+            }
+
+            // Demo lưu trên trình duyệt. Khi kết nối CSDL, thay bằng API gửi dữ liệu.
+            localStorage.setItem("nguyenVongDaLuu", JSON.stringify(nguyenVong));
+            hienThongBao("Danh sách nguyện vọng đã được lưu thành công!", "success");
+        }
+
+        function thoatTrang() {
+            if (confirm("Bạn có chắc chắn muốn thoát khỏi trang đăng ký nguyện vọng?")) {
+                window.location.href = "trangchu.html";
+            }
+        }
+
+        function hienThongBao(noiDung, loai) {
+            const message = document.getElementById("message");
+            message.className = "message " + loai;
+            message.innerText = noiDung;
+            message.style.display = "block";
+        }
+
+        document.getElementById("searchSchool").addEventListener("input", function () {
+            const tuKhoa = this.value.toLowerCase();
+            document.querySelectorAll(".school-row").forEach(function (row) {
+                row.style.display = row.dataset.name.toLowerCase().includes(tuKhoa) ? "flex" : "none";
+            });
+        });
+    </script>
+</body>
+</html>
