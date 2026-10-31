@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân hệ Thư ký Hội đồng Chấm thi - Tuyển sinh Lớp 10</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #f1f5f9; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* Top Header */
+        .top-navbar {
+            background: linear-gradient(135deg, #0b438c, #1e5bb8);
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; }
+        .user-badge { background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+
+        /* Main Layout 2 Cột */
+        .main-layout {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .panel-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            height: fit-content;
+        }
+
+        .panel-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #0b438c;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Menu chức năng thư ký bên trái */
+        .tab-menu { display: flex; flex-direction: column; gap: 8px; }
+        .tab-btn {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 14px; border-radius: 10px;
+            background: #f8fafc; color: #475569;
+            font-size: 13px; font-weight: 600; border: 1px solid #e2e8f0;
+            cursor: pointer; text-align: left; transition: all 0.2s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: #0b438c; color: white; border-color: #0b438c;
+        }
+        .tab-btn span {
+            width: 24px; height: 24px; background: rgba(0,0,0,0.08);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;
+        }
+        .tab-btn.active span { background: rgba(255,255,255,0.25); color: white; }
+
+        /* Content Sections bên phải */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .section-header {
+            font-size: 15px; font-weight: 700; color: #0b438c;
+            margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        /* Form Controls & Filter */
+        .filter-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .form-group { margin-bottom: 14px; }
+        .form-label { display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 5px; }
+        .form-control {
+            width: 100%; height: 40px; padding: 0 12px;
+            border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; background: #f8fafc; outline: none;
+        }
+
+        /* Download box template */
+        .download-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .btn-download {
+            background: #10b981; color: white; border: none;
+            padding: 0 16px; height: 38px; border-radius: 8px;
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+        .btn-download:hover { background: #059669; }
+
+        /* Upload Dropzone */
+        .upload-dropzone {
+            border: 2px dashed #cbd5e1; border-radius: 12px; padding: 30px 20px;
+            text-align: center; background: #f8fafc; cursor: pointer; transition: all 0.2s; margin-bottom: 16px;
+        }
+        .upload-dropzone:hover { border-color: #0b438c; background: #eef2ff; }
+        .upload-dropzone i { font-size: 36px; color: #0b438c; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 10px; }
+        th { background: #f8fafc; color: #475569; font-weight: 700; padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        td { padding: 12px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
+        tr:hover td { background: #f8fafc; }
+
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 700; }
+        .badge-success { background: #e6f6ee; color: #16794d; }
+        .badge-warning { background: #fef3c7; color: #b45309; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-navbar">
+        <div class="navbar-brand">
+            <i class="fa-solid fa-graduation-cap"></i> PHÂN HỆ THƯ KÝ HỘI ĐỒNG CHẤM THI
+        </div>
+        <div class="user-badge">
+            <i class="fa-solid fa-user-tie"></i> Thư ký: Nguyễn Văn Thư Ký[cite: 5]
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        
+        <!-- Cột Trái: Menu chức năng thư ký -->
+        <div class="panel-card">
+            <div class="panel-title">Chức Năng Thư Ký</div>
+            <div class="tab-menu">
+                <button class="tab-btn" onclick="switchTab(0)"><span>1</span> Xem danh sách thi</button>
+                <button class="tab-btn active" onclick="switchTab(1)"><span>2</span> Nhập điểm thi (Excel)</button>
+                <button class="tab-btn" onclick="switchTab(2)"><span>3</span> Quản lý phách</button>
+                <button class="tab-btn" onclick="switchTab(3)"><span>4</span> Thống kê kết quả chấm thi</button>
+            </div>
+        </div>
+
+        <!-- Cột Phải: Nội dung chi tiết chức năng Nhập điểm -->
+        <div class="panel-card">
+            <div class="section-header">
+                <span>Nhập Điểm Thi (Upload File Excel Theo Túi)</span>
+            </div>
+
+            <!-- Bộ lọc theo môn thi và chọn túi bài thi -->
+            <div class="filter-row">
+                <div class="form-group">
+                    <label class="form-label"><i class="fa-solid fa-filter"></i> Lọc theo môn thi</label>
+                    <select class="form-control" id="filterMon" onchange="filterTuiByMon()">
+                        <option value="all">Tất cả các môn</option>
+                        <option value="Toán">Môn Toán</option>
+                        <option value="Văn">Môn Ngữ Văn</option>
+                        <option value="Ngoại Ngữ" selected>Môn Ngoại Ngữ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Chọn túi bài thi tương ứng</label>
+                    <select class="form-control" id="selectTui">
+                        <option value="TUI-ANH-03">Túi số: TUI-ANH-03 - Môn: Ngoại Ngữ (30 bài)</option>
+                        <option value="TUI-TOAN-01">Túi số: TUI-TOAN-01 - Môn: Toán học (25 bài)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Khu vực tải file Excel mẫu (Có chứa Số phách và Điểm) -->
+            <div class="download-box">
+                <div>
+                    <strong>Tải file Excel nhập điểm mẫu</strong>
+                    <p style="font-size: 12px; color: #64748b; margin-top: 2px;">File tải xuống gồm các cột định sẵn: <strong>Số phách</strong> và <strong>Điểm</strong> của thí sinh trong túi đã chọn.</p>
+                </div>
+                <a href="#" class="btn-download" onclick="alert('Đang tải xuống file mẫu chứa danh sách Số phách và Điểm của túi bài thi...')">
+                    <i class="fa-solid fa-file-arrow-down"></i> Tải File Mẫu (.XLSX)
+                </a>
+            </div>
+
+            <!-- Khu vực Upload file Excel điểm thi -->
+            <div class="upload-dropzone" onclick="document.getElementById('fileExcel').click();">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p><strong>Click để tải lên file Excel điểm thi hoàn thiện</strong></p>
+                <span style="font-size: 12px; color: #64748b;">Hỗ trợ định dạng .xlsx, .xls (Kiểm tra hợp lệ cột Số phách & Điểm từ 0-10 bước 0.25)</span>
+                <input type="file" id="fileExcel" style="display: none;" accept=".xlsx, .xls" onchange="alert('Đã upload và kiểm tra hợp lệ file điểm thi thành công!')">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(index) {
+            // Logic chuyển tab giữ nguyên nếu bạn đã có sẵn
+        }
+
+        function filterTuiByMon() {
+            const mon = document.getElementById('filterMon').value;
+            alert('Đã lọc danh sách túi bài thi theo môn: ' + mon);
+        }
+    </script>
+</body>
+</html>
