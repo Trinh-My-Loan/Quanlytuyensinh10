@@ -1,3 +1,56 @@
+<?php
+session_start();
+// Gọi file kết nối db.php (Do file này nằm ở thư mục HTML/ nên phải lùi ra một cấp bằng ../db.php)
+require_once '../db.php';
+
+$error_message = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    if (empty($username) || empty($password)) {
+        $error_message = "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!";
+    } else {
+        try {
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
+            $stmt->execute(array('username' => $username));
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Kiểm tra tài khoản và mật khẩu
+            if ($user && $password === $user['password']) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['hoten'] = $user['hoten'];
+                $_SESSION['role'] = $user['role'];
+
+                // Điều hướng phân quyền dựa vào role
+                switch ($user['role']) {
+                    case 'canbo':
+                        header("Location: trangchucanbo.html");
+                        break;
+                    case 'thuky':
+                        header("Location: trangchuthuky.html");
+                        break;
+                    case 'thisinh':
+                        header("Location: trangchu.html");
+                        break;
+                    case 'admin':
+                        header("Location: xt.html");
+                        break;
+                    default:
+                        header("Location: dangnhap.php");
+                }
+                exit();
+            } else {
+                $error_message = "Tên đăng nhập hoặc mật khẩu không chính xác!";
+            }
+        } catch (PDOException $e) {
+            $error_message = "Lỗi hệ thống: " . $e->getMessage();
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -22,14 +75,21 @@
             <p>Cổng quản lý tuyển sinh lớp 10 THPT</p>
         </div>
 
-        <!-- Form Đăng nhập -->
-        <form action="#" method="POST">
+        <!-- Hiển thị thông báo lỗi nếu đăng nhập sai -->
+        <?php if (!empty($error_message)): ?>
+            <div style="background: #fee2e2; color: #991b1b; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 15px; text-align: center; font-weight: 600;">
+                <i class="fa-solid fa-circle-exclamation"></i> <?php echo $error_message; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Form Đăng nhập: Gửi dữ liệu trực tiếp về chính file này (để trống hoặc điền dangnhap.php) -->
+        <form action="" method="POST">
             <!-- Tên đăng nhập / Số CCCD -->
             <div class="form-group">
                 <label class="form-label" for="username">Tên đăng nhập / Số CCCD</label>
                 <div class="input-wrap">
                     <i class="fa-regular fa-user input-icon"></i>
-                    <input type="text" id="username" class="form-control" placeholder="Nhập tên đăng nhập của bạn" required>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Nhập tên đăng nhập của bạn" required>
                 </div>
             </div>
 
@@ -38,7 +98,7 @@
                 <label class="form-label" for="password">Mật khẩu</label>
                 <div class="input-wrap">
                     <i class="fa-regular fa-lock input-icon"></i>
-                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
                     <button type="button" class="toggle-password" onclick="togglePassword()">
                         <i class="fa-regular fa-eye" id="eye-icon"></i>
                     </button>
