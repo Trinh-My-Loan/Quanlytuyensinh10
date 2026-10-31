@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cổng Thông Tin Tuyển Sinh Lớp 10 THPT</title>
+
     <!-- Font Awesome Icons & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Đường dẫn CSS liên kết đúng cấu trúc thư mục -->
+
+    <!-- Đường dẫn CSS -->
     <link rel="stylesheet" href="../CSS/trangchu.css">
 </head>
 <body>
@@ -15,12 +17,16 @@
     <!-- Thanh Menu Đầu Trang -->
     <nav class="navbar">
         <div class="logo-section">
-            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
             <div class="logo-text">
                 <h3>SỞ GIÁO DỤC VÀ ĐÀO TẠO</h3>
                 <h2>THÀNH PHỐ HỒ CHÍ MINH</h2>
             </div>
         </div>
+
         <ul class="nav-links">
             <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
             <li><a href="#">Văn bản - Thông báo</a></li>
@@ -28,18 +34,31 @@
             <li><a href="#">Bản đồ tuyển sinh</a></li>
             <li><a href="#">Hướng dẫn đăng ký</a></li>
             <li><a href="#">Liên hệ</a></li>
-            <li><a href="dangnhap.html" class="btn-login-nav"><i class="fa-solid fa-user"></i> Đăng nhập</a></li>
+
+            <!-- Nút đăng nhập / đăng ký nguyện vọng -->
+            <li>
+                <a href="dangnhap.html"
+                   class="btn-login-nav"
+                   onclick="return checkLoginStatus(event)">
+                    <i class="fa-solid fa-user"></i> Đăng nhập
+                </a>
+            </li>
         </ul>
     </nav>
 
     <!-- Phần Banner Trung Tâm -->
     <div class="hero-banner">
-        <h1 class="hero-title">Cổng thông tin <span>tuyển sinh lớp 10</span></h1>
+        <h1 class="hero-title">
+            Cổng thông tin <span>tuyển sinh lớp 10</span>
+        </h1>
 
         <!-- Các Thẻ Chức Năng Nhanh -->
         <div class="grid-container">
+
             <a href="#" class="card-action">
-                <div class="card-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
                 <div class="card-content">
                     <strong>Lịch trình kỳ thi lớp 10</strong>
                     Thời gian đăng ký nguyện vọng: từ ngày 11/08/2026 đến 16/08/2026
@@ -47,7 +66,9 @@
             </a>
 
             <a href="#" class="card-action">
-                <div class="card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
                 <div class="card-content">
                     <strong>Tra cứu điểm thi</strong>
                     Xem chi tiết điểm số các môn Toán, Văn, Ngoại ngữ và môn Chuyên
@@ -55,75 +76,108 @@
             </a>
 
             <a href="#" class="card-action">
-                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="card-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
                 <div class="card-content">
                     <strong>Tra cứu kết quả xét tuyển</strong>
                     Xem điểm chuẩn NV1, NV2, NV3 và danh sách trúng tuyển chính thức
                 </div>
             </a>
 
-            <a href="#" class="card-action">
-                <div class="card-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            <a href="#" class="card-action" onclick="diDenDangKyNguyenVong(event)">
+                <div class="card-icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
                 <div class="card-content">
-                    <strong>Đăng ký tuyển sinh tư thục</strong>
+                    <strong>Đăng ký nguyện vọng</strong>
                     Nộp hồ sơ trực tuyến dành cho thí sinh đăng ký hệ ngoài công lập
                 </div>
             </a>
+
         </div>
     </div>
 
-    <!-- PHẦN BỔ SUNG: VĂN BẢN TUYỂN SINH -->
+    <!-- PHẦN VĂN BẢN TUYỂN SINH -->
     <div class="section-container">
         <h3 class="section-title">Văn Bản Tuyển Sinh Lớp 10</h3>
+
         <div class="vb-grid">
             <div class="vb-card">
-                <div class="vb-icon" style="background-color: #f59e0b;"><i class="fa-solid fa-file-lines"></i></div>
+                <div class="vb-icon" style="background-color: #f59e0b;">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
                 <h4>Thông báo văn bản</h4>
                 <p>Thông tin chi tiết các văn bản, quy chế mới nhất của Sở GD&ĐT về tuyển sinh.</p>
             </div>
+
             <div class="vb-card">
-                <div class="vb-icon" style="background-color: #38bdf8;"><i class="fa-solid fa-graduation-cap"></i></div>
-                <h4>Đăng ký tuyển sinh lớp 10</h4>
+                <div class="vb-icon" style="background-color: #38bdf8;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h4>
+                    <a href="#" onclick="diDenDangKyNguyenVong(event)">
+                             Đăng ký nguyện vọng
+                    </a>
+                </h4>
                 <p>Công cụ hỗ trợ việc đăng ký thi tuyển sinh vào lớp 10 THPT công lập và chuyên.</p>
             </div>
+
             <div class="vb-card">
-                <div class="vb-icon" style="background-color: #8b5cf6;"><i class="fa-solid fa-school"></i></div>
+                <div class="vb-icon" style="background-color: #8b5cf6;">
+                    <i class="fa-solid fa-school"></i>
+                </div>
                 <h4>Thông tin trường THPT</h4>
                 <p>Thông tin chi tiết về các trường THPT bao gồm chỉ tiêu, môn chuyên, địa chỉ đào tạo.</p>
             </div>
+
             <div class="vb-card">
-                <div class="vb-icon" style="background-color: #10b981;"><i class="fa-solid fa-address-card"></i></div>
+                <div class="vb-icon" style="background-color: #10b981;">
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
                 <h4>Tra cứu thông tin</h4>
                 <p>Công cụ hỗ trợ tra cứu thông tin đăng ký, kết quả tuyển sinh lớp 10 nhanh chóng.</p>
             </div>
         </div>
 
-        <!-- PHẦN BỔ SUNG: TIN TỨC - THÔNG BÁO MỚI NHẤT -->
+        <!-- PHẦN TIN TỨC - THÔNG BÁO MỚI NHẤT -->
         <h3 class="section-title">Tin Tức - Thông Báo Mới Nhất</h3>
+
         <div class="news-grid">
             <div class="news-card">
-                <div class="news-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                <div class="news-icon">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
                 <div class="news-content">
                     <h5>Thông báo Tuyển sinh vào lớp 10 Trường THPT Chuyên năm học 2026-2027</h5>
                     <span>Cập nhật: 11/08/2026 | Sở GD&ĐT</span>
                 </div>
             </div>
+
             <div class="news-card">
-                <div class="news-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                <div class="news-icon">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
                 <div class="news-content">
                     <h5>Hướng dẫn đăng ký nguyện vọng xét tuyển vào lớp 10 năm học 2026-2027</h5>
                     <span>Cập nhật: 11/08/2026 | Sở GD&ĐT</span>
                 </div>
             </div>
+
             <div class="news-card">
-                <div class="news-icon"><i class="fa-solid fa-file-shield"></i></div>
+                <div class="news-icon">
+                    <i class="fa-solid fa-file-shield"></i>
+                </div>
                 <div class="news-content">
                     <h5>Kế hoạch phân bổ chỉ tiêu tuyển sinh lớp 10 các trường THPT công lập</h5>
                     <span>Cập nhật: 23/05/2026 | Sở GD&ĐT</span>
                 </div>
             </div>
+
             <div class="news-card">
-                <div class="news-icon"><i class="fa-solid fa-file-shield"></i></div>
+                <div class="news-icon">
+                    <i class="fa-solid fa-file-shield"></i>
+                </div>
                 <div class="news-content">
                     <h5>Quy chế phúc khảo bài thi tuyển sinh lớp 10 THPT năm học 2026-2027</h5>
                     <span>Cập nhật: 29/04/2026 | Sở GD&ĐT</span>
@@ -136,6 +190,21 @@
     <div class="footer">
         <p>© 2026 Cổng Thông Tin Tuyển Sinh Lớp 10 THPT · Sở Giáo dục và Đào tạo Thành phố Hồ Chí Minh</p>
     </div>
+
+    <!-- Kiểm tra trạng thái đăng nhập -->
+    <script>
+    function diDenDangKyNguyenVong(event) {
+        event.preventDefault();
+
+        const daDangNhap = localStorage.getItem("daDangNhap");
+
+        if (daDangNhap === "true") {
+            window.location.href = "dangkynguyenvong.html";
+        } else {
+            window.location.href = "dangnhap.html";
+        }
+    }
+</script>
 
 </body>
 </html>

@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +15,11 @@ body {
     font-size: 14px;
 }
 
+<<<<<<< Updated upstream
+=======
+/* HEADER */
+
+>>>>>>> Stashed changes
 .header {
     background: #ffffff;
     box-shadow: 0 2px 12px rgba(25, 55, 90, 0.08);
@@ -62,6 +71,11 @@ body {
     font-weight: 600;
 }
 
+<<<<<<< Updated upstream
+=======
+/* NAVIGATION */
+
+>>>>>>> Stashed changes
 .navbar {
     min-height: 48px;
     background: #155b94;
@@ -85,6 +99,11 @@ body {
     color: #ffffff;
 }
 
+<<<<<<< Updated upstream
+=======
+/* MAIN CONTENT */
+
+>>>>>>> Stashed changes
 .container {
     max-width: 1200px;
     margin: 24px auto;
@@ -105,6 +124,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< Updated upstream
+=======
+    gap: 15px;
+>>>>>>> Stashed changes
     margin-bottom: 20px;
 }
 
@@ -114,8 +137,12 @@ body {
     margin-bottom: 6px;
 }
 
+<<<<<<< Updated upstream
 .page-heading p,
 .section-title p {
+=======
+.page-heading p {
+>>>>>>> Stashed changes
     color: #8190a4;
     font-size: 12px;
 }
@@ -126,11 +153,16 @@ body {
     padding: 11px 15px;
     border-radius: 8px;
     font-size: 12px;
+<<<<<<< Updated upstream
+=======
+    white-space: nowrap;
+>>>>>>> Stashed changes
 }
 
 .time-note i {
     margin-right: 6px;
 }
+<<<<<<< Updated upstream
 
 .steps {
     display: flex;
@@ -190,6 +222,25 @@ body {
     border: 1px solid #e7edf4;
     border-radius: 11px;
     padding: 22px;
+=======
+.column-heading,
+.preference-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1.5fr;
+    gap: 15px;
+    align-items: center;
+}
+
+
+
+/* REGISTRATION CARD */
+
+.register-card {
+    background: #ffffff;
+    border: 1px solid #e7edf4;
+    border-radius: 11px;
+    padding: 25px;
+>>>>>>> Stashed changes
     box-shadow: 0 3px 12px rgba(25, 55, 90, 0.035);
 }
 
@@ -198,13 +249,22 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+<<<<<<< Updated upstream
     margin-bottom: 20px;
+=======
+    margin-bottom: 25px;
+>>>>>>> Stashed changes
 }
 
 .section-title h2 {
     color: #244e76;
+<<<<<<< Updated upstream
     font-size: 16px;
     margin-bottom: 6px;
+=======
+    font-size: 17px;
+    margin-bottom: 7px;
+>>>>>>> Stashed changes
 }
 
 .section-title h2 i {
@@ -212,15 +272,29 @@ body {
     margin-right: 7px;
 }
 
+<<<<<<< Updated upstream
 .valid {
     color: #16845b;
     background: #e9f8f1;
     padding: 8px 11px;
     border-radius: 20px;
+=======
+.section-title p {
+    color: #8190a4;
+    font-size: 12px;
+}
+
+.limit {
+    color: #236da5;
+    background: #edf6ff;
+    padding: 8px 12px;
+    border-radius: 6px;
+>>>>>>> Stashed changes
     font-size: 11px;
     white-space: nowrap;
 }
 
+<<<<<<< Updated upstream
 .info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -286,17 +360,169 @@ body {
 .notice {
     margin-top: 16px;
     padding: 11px 13px;
+=======
+/* COLUMN HEADER */
+
+.column-heading {
+    display: grid;
+    grid-template-columns: 90px 1fr 1.5fr;
+    gap: 18px;
+    padding: 0 15px 12px;
+    color: #71849a;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #e9eef4;
+}
+
+/* PREFERENCE ROW */
+
+.preference-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1.5fr;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 15px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.priority-label {
+    color: #1769aa;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* SCHOOL INPUT */
+
+.school-field {
+    position: relative;
+    min-width: 0;
+}
+
+.input-wrapper {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    background: #ffffff;
+    padding: 0 13px;
+    transition: 0.2s;
+}
+
+.input-wrapper:focus-within {
+    border-color: #3685c1;
+    box-shadow: 0 0 0 3px rgba(54, 133, 193, 0.1);
+}
+
+.school-input {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: none;
+    color: #344b64;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.school-input::placeholder {
+    color: #9aa8b7;
+}
+
+.school-input:disabled {
+    cursor: not-allowed;
+    background: transparent;
+}
+
+.input-wrapper i {
+    color: #8193a6;
+    font-size: 12px;
+}
+
+/* SCHOOL SUGGESTIONS */
+
+.suggestions {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #ffffff;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    box-shadow: 0 5px 16px rgba(25, 55, 90, 0.12);
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 12px 14px;
+    color: #344b64;
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.suggestion-item:last-child {
+    border-bottom: 0;
+}
+
+.suggestion-item:hover {
+    color: #1769aa;
+    background: #f0f7fd;
+}
+
+.no-result {
+    padding: 13px;
+    color: #8796a8;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* WARD SELECT */
+
+.ward-field select {
+    width: 100%;
+    height: 46px;
+    padding: 0 12px;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    outline: none;
+    background: #ffffff;
+    color: #344b64;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.ward-field select:focus {
+    border-color: #3685c1;
+    box-shadow: 0 0 0 3px rgba(54, 133, 193, 0.1);
+}
+
+/* NOTICE */
+
+.notice {
+    margin-top: 22px;
+    padding: 13px 15px;
+>>>>>>> Stashed changes
     background: #fff9e9;
     color: #92702b;
     border-radius: 6px;
     font-size: 11px;
+<<<<<<< Updated upstream
     line-height: 1.6;
+=======
+    line-height: 1.7;
+>>>>>>> Stashed changes
 }
 
 .notice i {
     margin-right: 5px;
 }
 
+<<<<<<< Updated upstream
 .register-layout {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -508,6 +734,9 @@ body {
 .btn-primary:hover {
     background: #105587;
 }
+=======
+/* MESSAGE */
+>>>>>>> Stashed changes
 
 .message {
     display: none;
@@ -529,13 +758,64 @@ body {
     background: #fff0f0;
 }
 
+<<<<<<< Updated upstream
+=======
+/* BUTTONS */
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.btn {
+    padding: 11px 17px;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-light {
+    background: #edf1f5;
+    color: #53677d;
+}
+
+.btn-light:hover {
+    background: #dfe6ee;
+}
+
+.btn-primary {
+    background: #1769aa;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #105587;
+}
+
+/* FOOTER */
+
+>>>>>>> Stashed changes
 footer {
     text-align: center;
     color: #96a2b1;
     font-size: 11px;
+<<<<<<< Updated upstream
     padding: 25px 0 10px;
 }
 
+=======
+    padding: 25px 15px;
+}
+
+/* RESPONSIVE */
+
+>>>>>>> Stashed changes
 @media (max-width: 850px) {
     .header-top {
         padding: 15px;
@@ -550,8 +830,15 @@ footer {
         white-space: nowrap;
     }
 
+<<<<<<< Updated upstream
     .register-layout {
         grid-template-columns: 1fr;
+=======
+    .column-heading,
+    .preference-row {
+        grid-template-columns: 65px 1.2fr 1fr;
+        gap: 10px;
+>>>>>>> Stashed changes
     }
 }
 
@@ -565,6 +852,7 @@ footer {
         margin-top: 12px;
     }
 
+<<<<<<< Updated upstream
     .steps {
         flex-direction: column;
     }
@@ -572,6 +860,73 @@ footer {
     .info-grid,
     .form-grid {
         grid-template-columns: 1fr 1fr;
+=======
+
+    .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .register-card {
+        padding: 15px;
+    }
+
+    .column-heading {
+        display: none;
+    }
+
+    .preference-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 18px 5px;
+    }
+
+    .priority-label {
+        font-size: 17px;
+    }
+
+    .student {
+        display: none;
+    }
+
+    .action-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+@media (max-width: 850px) {
+    .header-top {
+        padding: 15px;
+    }
+
+    .navbar {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .navbar a {
+        white-space: nowrap;
+    }
+
+    .column-heading,
+    .preference-row {
+        grid-template-columns: 65px 1fr 1.3fr;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-heading {
+        display: block;
+    }
+
+    .time-note {
+        display: inline-block;
+        margin-top: 12px;
+>>>>>>> Stashed changes
     }
 
     .section-title {
@@ -579,7 +934,70 @@ footer {
         flex-direction: column;
     }
 
+<<<<<<< Updated upstream
     .student {
         display: none;
     }
 }
+=======
+    .register-card {
+        padding: 15px;
+    }
+
+    .column-heading {
+        display: none;
+    }
+
+    .preference-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 18px 5px;
+    }
+
+    .priority-label {
+        font-size: 17px;
+    }
+
+    .student {
+        display: none;
+    }
+
+    .action-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+.input-wrapper {
+    width: 100%;
+    border: 1px solid #d6e1ed;
+    border-radius: 9px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.school-input {
+    width: 100%;
+    height: 56px;
+    padding: 0 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #29435f;
+    font-size: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.input-wrapper:focus-within {
+    border-color: #1976bd;
+    box-shadow: 0 0 0 3px rgba(25, 118, 189, 0.1);
+}
+
+.school-input:disabled {
+    background: #f5f7fa;
+    cursor: not-allowed;
+}
+>>>>>>> Stashed changes

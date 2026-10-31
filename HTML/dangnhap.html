@@ -23,7 +23,7 @@
         </div>
 
         <!-- Form Đăng nhập -->
-        <form action="#" method="POST">
+        <form id="loginForm">
             <!-- Tên đăng nhập / Số CCCD -->
             <div class="form-group">
                 <label class="form-label" for="username">Tên đăng nhập / Số CCCD</label>
@@ -64,19 +64,45 @@
     </div>
 
     <script>
-        // Tính năng ẩn/hiện mật khẩu
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eye-icon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.className = 'fa-regular fa-eye-slash';
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.className = 'fa-regular fa-eye';
-            }
+    // Ẩn/hiện mật khẩu
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eye-icon');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.className = 'fa-regular fa-eye-slash';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.className = 'fa-regular fa-eye';
         }
-    </script>
+    }
+
+    // Nếu đã đăng nhập thì chuyển thẳng đến đăng ký nguyện vọng
+    window.onload = function () {
+        if (sessionStorage.getItem("isLoggedIn") === "true") {
+            window.location.href = "dangkynguyenvong.html";
+        }
+    };
+
+    // Xử lý đăng nhập demo
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (username === "" || password === "") {
+            alert("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+            return;
+        }
+
+        sessionStorage.setItem("isLoggedIn", "true");
+
+        alert("Đăng nhập thành công!");
+
+        window.location.href = "dangkynguyenvong.html";
+    });
+</script>
 </body>
 </html>
